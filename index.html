@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redirect Handler</title>
+    <script>
+        // Parse the URL for authentication tokens or parameters
+        const urlParams = new URLSearchParams(window.location.search);
+
+        // For debugging or testing: Log the received parameters
+        console.log("Parameters received:", urlParams.toString());
+
+        // Do something with the parameters (e.g., forward to another service or log them)
+        alert("Redirect URI triggered successfully!");
+
+       
+    </script>
+</head>
+<body>
+    <h1>Redirect Handler Active</h1>
+    <p>If you see this, the redirect worked!</p>
+</body>
+</html>
