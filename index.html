@@ -18,12 +18,13 @@
             console.log("Authorization Code:", code);
             console.log("State:", state);
 
-            // Display the received code and state on the page (for debugging/testing)
+            // Redirect to the Flutter app using a custom URI scheme
+            const flutterAppRedirectUri = `myapp://callback?code=${code}&state=${state}`;
+            window.location.href = flutterAppRedirectUri;
+
+            // Optionally, display the received code and state on the page
             document.getElementById("codeOutput").innerText = "Authorization Code: " + code;
             document.getElementById("stateOutput").innerText = "State: " + state;
-
-            // Optional: Redirect to your app or another page after handling
-            // Example: window.location.href = "https://your-app.com/dashboard?" + urlParams.toString();
         };
     </script>
 </head>
@@ -32,8 +33,5 @@
     <p>The following data was received:</p>
     <pre id="codeOutput">Loading Authorization Code...</pre>
     <pre id="stateOutput">Loading State...</pre>
-
-    <!-- Optional: Add a button to redirect to the Flutter app or other pages -->
-    <button onclick="window.location.href = 'https://your-flutter-app.com/dashboard'">Go to App</button>
 </body>
 </html>
