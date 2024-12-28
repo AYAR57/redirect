@@ -8,15 +8,43 @@
         window.onload = () => {
             const urlParams = new URLSearchParams(window.location.search);
             const code = urlParams.get('code');
+            const error = urlParams.get('error');
+            const errorDescription = urlParams.get('error_description');
             const state = urlParams.get('state');
             
-            // Redirect to your Flutter app using the myapp:// scheme
-            window.location.href = `myapp://callback?code=${code}&state=${state}`;
+            // Log the received data
+            console.log('Received params:', {
+                code,
+                error,
+                errorDescription,
+                state
+            });
+
+            // Build the redirect URL
+            let redirectUrl = 'myapp://callback?';
+            if (code) {
+                redirectUrl += `code=${encodeURIComponent(code)}&`;
+            }
+            if (error) {
+                redirectUrl += `error=${encodeURIComponent(error)}&`;
+            }
+            if (errorDescription) {
+                redirectUrl += `error_description=${encodeURIComponent(errorDescription)}&`;
+            }
+            if (state) {
+                redirectUrl += `state=${encodeURIComponent(state)}`;
+            }
+
+            console.log('Redirecting to:', redirectUrl);
+            
+            // Redirect to your Flutter app
+            window.location.href = redirectUrl;
         };
     </script>
 </head>
 <body>
-    <h1>Redirecting...</h1>
-    <p>Please wait while we redirect you back to the app...</p>
+    <h1>Processing...</h1>
+    <p>Please wait while we process your login...</p>
+    <div id="debug"></div>
 </body>
 </html>
