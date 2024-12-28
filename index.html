@@ -3,50 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirect Handler</title>
-    <style>
-        .debug-info {
-            background: #f5f5f5;
-            padding: 10px;
-            margin: 10px 0;
-            font-family: monospace;
-        }
-    </style>
+    <title>LinkedIn Authentication</title>
     <script>
-        function displayDebugInfo(message) {
-            const debugDiv = document.getElementById('debug-info');
-            debugDiv.innerHTML += `<div>${message}</div>`;
-        }
+        window.onload = function() {
+            // Get the current URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const code = urlParams.get('code');
+            const state = urlParams.get('state');
+            
+            // Log the received data
+            console.log('Received code:', code);
+            console.log('Received state:', state);
 
-        window.onload = () => {
-            try {
-                const urlParams = new URLSearchParams(window.location.search);
-                const code = urlParams.get('code');
-                const state = urlParams.get('state');
-                
-                displayDebugInfo(`Received code: ${code}`);
-                displayDebugInfo(`Received state: ${state}`);
-
-                // Construct the redirect URL
-                const redirectUrl = `myapp://oauth2redirect?code=${encodeURIComponent(code)}&state=${encodeURIComponent(state)}`;
-                displayDebugInfo(`Redirecting to: ${redirectUrl}`);
-
-                // Attempt the redirect
-                window.location.replace(redirectUrl);
-
-                // If we're still here after 2 seconds, the redirect didn't work
-                setTimeout(() => {
-                    displayDebugInfo('Redirect may have failed. Please check your URL scheme configuration.');
-                }, 2000);
-            } catch (error) {
-                displayDebugInfo(`Error: ${error.message}`);
-            }
+            // Redirect back to your app's main page with the code
+            const appUrl = '/'; // Replace with your app's main page URL
+            window.location.href = appUrl + '?' + urlParams.toString();
         };
     </script>
 </head>
 <body>
-    <h1>OAuth Redirect</h1>
-    <p>Processing authentication...</p>
-    <div id="debug-info" class="debug-info"></div>
+    <h1>Processing Authentication</h1>
+    <p>Please wait while we complete the authentication process...</p>
 </body>
 </html>
