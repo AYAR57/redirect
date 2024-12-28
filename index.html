@@ -1,26 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirect Handler</title>
     <script>
         window.onload = () => {
             // Get query parameters from the URL
             const urlParams = new URLSearchParams(window.location.search);
 
-            // Example: Log tokens to the console for debugging
-            console.log("Received OAuth Data:", urlParams.toString());
+            // Get specific parameters (e.g., code and state)
+            const code = urlParams.get('code');
+            const state = urlParams.get('state');
 
-            // Display the data on the page (for debugging or testing)
-            document.getElementById("output").innerText = urlParams.toString();
+            // Log the received data for debugging
+            console.log("Received OAuth Data:", urlParams.toString());
+            console.log("Authorization Code:", code);
+            console.log("State:", state);
+
+            // Display the received code and state on the page (for debugging/testing)
+            document.getElementById("codeOutput").innerText = "Authorization Code: " + code;
+            document.getElementById("stateOutput").innerText = "State: " + state;
 
             // Optional: Redirect to your app or another page after handling
-            // window.location.href = "https://your-app.com/dashboard?" + urlParams.toString();
+            // Example: window.location.href = "https://your-app.com/dashboard?" + urlParams.toString();
         };
     </script>
 </head>
 <body>
     <h1>Redirect Successful!</h1>
     <p>The following data was received:</p>
-    <pre id="output">Loading...</pre>
+    <pre id="codeOutput">Loading Authorization Code...</pre>
+    <pre id="stateOutput">Loading State...</pre>
+
+    <!-- Optional: Add a button to redirect to the Flutter app or other pages -->
+    <button onclick="window.location.href = 'https://your-flutter-app.com/dashboard'">Go to App</button>
 </body>
 </html>
