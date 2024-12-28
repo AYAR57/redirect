@@ -3,20 +3,24 @@
 <head>
     <title>Redirect Handler</title>
     <script>
-        // Parse the URL for authentication tokens or parameters
-        const urlParams = new URLSearchParams(window.location.search);
+        window.onload = () => {
+            // Get query parameters from the URL
+            const urlParams = new URLSearchParams(window.location.search);
 
-        // For debugging or testing: Log the received parameters
-        console.log("Parameters received:", urlParams.toString());
+            // Example: Log tokens to the console for debugging
+            console.log("Received OAuth Data:", urlParams.toString());
 
-        // Do something with the parameters (e.g., forward to another service or log them)
-        alert("Redirect URI triggered successfully!");
+            // Display the data on the page (for debugging or testing)
+            document.getElementById("output").innerText = urlParams.toString();
 
-       
+            // Optional: Redirect to your app or another page after handling
+            // window.location.href = "https://your-app.com/dashboard?" + urlParams.toString();
+        };
     </script>
 </head>
 <body>
-    <h1>Redirect Handler Active</h1>
-    <p>If you see this, the redirect worked!</p>
+    <h1>Redirect Successful!</h1>
+    <p>The following data was received:</p>
+    <pre id="output">Loading...</pre>
 </body>
 </html>
