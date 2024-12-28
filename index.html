@@ -6,32 +6,17 @@
     <title>Redirect Handler</title>
     <script>
         window.onload = () => {
-            // Get query parameters from the URL
             const urlParams = new URLSearchParams(window.location.search);
-
-            // Get specific parameters (e.g., code and state)
             const code = urlParams.get('code');
             const state = urlParams.get('state');
-
-            // Log the received data for debugging
-            console.log("Received OAuth Data:", urlParams.toString());
-            console.log("Authorization Code:", code);
-            console.log("State:", state);
-
-            // Redirect to the Flutter app using a custom URI scheme
-            const flutterAppRedirectUri = `myapp://callback?code=${code}&state=${state}`;
-            window.location.href = flutterAppRedirectUri;
-
-            // Optionally, display the received code and state on the page
-            document.getElementById("codeOutput").innerText = "Authorization Code: " + code;
-            document.getElementById("stateOutput").innerText = "State: " + state;
+            
+            // Redirect to your Flutter app using the myapp:// scheme
+            window.location.href = `myapp://callback?code=${code}&state=${state}`;
         };
     </script>
 </head>
 <body>
-    <h1>Redirect Successful!</h1>
-    <p>The following data was received:</p>
-    <pre id="codeOutput">Loading Authorization Code...</pre>
-    <pre id="stateOutput">Loading State...</pre>
+    <h1>Redirecting...</h1>
+    <p>Please wait while we redirect you back to the app...</p>
 </body>
 </html>
