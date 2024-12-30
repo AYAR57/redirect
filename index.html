@@ -15,9 +15,11 @@
             console.log('Received code:', code);
             console.log('Received state:', state);
 
-            // Redirect back to your app's main page with the code
-            const appUrl = 'http://localhost:49837/Anonymous-Business-Network-Platform'; // Replace with your app's main page URL
-            window.location.href = appUrl + '?' + urlParams.toString();
+            // Make sure to use the correct port number and path
+            const appUrl = 'http://localhost:49837/Anonymous-Business-Network-Platform';
+            
+            // Preserve all URL parameters when redirecting back
+            window.location.href = `${appUrl}#/auth?${urlParams.toString()}`;
         };
     </script>
 </head>
